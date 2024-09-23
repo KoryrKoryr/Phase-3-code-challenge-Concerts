@@ -40,7 +40,7 @@ def test_band_methods(session, band1, band2, venue1, venue2):
     
     # Testing `play_in_venue` method
     print(f"Testing `play_in_venue` for {band1.name}")
-    band1.play_in_venue(venue1, '2025-01-01')
+    band1.play_in_venue(venue1, '2025-01-01', session)
     new_concert = session.query(Concert).filter_by(band_id=band1.id, date='2025-01-01').first()
     print(f"New concert for {band1.name} in {venue1.title}: {new_concert.date} (Success: {new_concert is not None})")
 

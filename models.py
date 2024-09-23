@@ -22,7 +22,7 @@ class Band(Base):
         """Returns all venues the band has played at."""
         return list({concert.venue for concert in self.concerts_relationship})
 
-    def play_in_venue(self, venue, date):
+    def play_in_venue(self, venue, date, session):
         """Creates a new concert for the band at the given venue and date."""
         new_concert = Concert(band=self, venue=venue, date=date)
         session.add(new_concert)
