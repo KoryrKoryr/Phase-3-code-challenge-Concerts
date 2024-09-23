@@ -13,7 +13,9 @@ def seed_bands(session):
     band2 = Band(name='Foster the People', hometown='Los Angeles')
     band3 = Band(name='Evanescence', hometown='Arkansas')
     session.add_all([band1, band2, band3])
+    print("Bands added to the session.")
     session.commit()
+    print("Bands committed to the database.")
     return band1, band2, band3
 
 # Function to seed venues
@@ -22,7 +24,9 @@ def seed_venues(session):
     venue2 = Venue(title='The Forum', city='Los Angeles')
     venue3 = Venue(title='First Avenue', city='Minnesota')
     session.add_all([venue1, venue2, venue3])
+    print("Venues added to the session.")
     session.commit()
+    print("Venues committed to the database.")
     return venue1, venue2, venue3
 
 # Function to seed concerts
@@ -33,7 +37,10 @@ def seed_concerts(session, bands, venues):
     concert4 = Concert(band=bands[1], venue=venues[0], date='2024-12-23')
     concert5 = Concert(band=bands[2], venue=venues[2], date='2024-08-25')
     session.add_all([concert1, concert2, concert3, concert4, concert5])
+    print("Concerts added to the session.")
     session.commit()
+    print("Concerts committed to the database.")
+    
 
 def test_band_methods(session, band1, band2, venue1, venue2):
     print("\n--- Testing Band Methods ---")
@@ -83,9 +90,12 @@ def test_concert_methods(session, concert):
 
 def main():
     # Seed data
+    print("Starting to seed data...")
     bands = seed_bands(session)
     venues = seed_venues(session)
     seed_concerts(session, bands, venues)
+
+    print("Data seeded successfully!")
 
     # Test methods
     test_band_methods(session, bands[0], bands[1], venues[0], venues[1])
